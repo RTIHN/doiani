@@ -268,7 +268,7 @@
     background: #2a2a2a;
     border: 1px solid #444;
     border-radius: 5px;
-    overflow: hidden;
+    overflow: visible;
     padding: 0.5rem;
     text-align: center;
   }
@@ -276,6 +276,7 @@
   .photo-grid img {
     width: 100%;
     height: auto;
+    display: block;
     border-radius: 5px;
   }
   
