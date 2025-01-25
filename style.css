@@ -116,7 +116,7 @@
     z-index: 2; /* Above floating hearts */
     max-width: 1200px;
     margin: 2rem auto;
-    gap: 2rem;
+    gap: 4rem;
   }
   
   .hero-circle {
