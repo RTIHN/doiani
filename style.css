@@ -1,0 +1,356 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* BODY BASE */
+  body {
+    font-family: Arial, sans-serif;
+    color: #f4f4f4;
+    background: linear-gradient(to bottom, #8B0000 0%, #000 90%);
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* NAVBAR */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    padding: 1rem 2rem;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    color: #ff4d4d; /* Bright red for contrast */
+    font-weight: bold;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .nav-links li a:hover {
+    color: #ff4d4d;
+  }
+  
+  /* HERO SECTION */
+  
+  
+  .hero {
+    position: relative;
+    min-height: 70vh;
+    background: transparent; /* so the body gradient is visible */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Floating Hearts - absolutely positioned */
+  .floating-heart {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-image: url("data:image/svg+xml,%3Csvg width='512' height='512' viewBox='0 0 512 512' fill='%23ff4d4d' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M471.701 73.532c-54.693-47.125-136.24-38.553-186.65 14.569l-21.044 21.87-21.039-21.868c-50.409-53.118-131.943-61.697-186.641-14.573-62.353 53.779-66.664 148.458-11.443 207.766 48.607 52.119 193.133 176.576 207.408 188.331 2.718 2.197 6.032 3.274 9.369 3.274 3.333 0 6.647-1.073 9.369-3.274 14.271-11.755 158.801-136.217 207.408-188.331 55.222-59.307 50.91-153.987-11.437-207.764z'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+    animation: floatUp 10s linear infinite;
+    z-index: 1;
+  }
+  
+  @keyframes floatUp {
+    0% {
+      transform: translateY(50vh) rotate(0deg);
+      opacity: 0.0;
+    }
+    10% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-80vh) rotate(360deg);
+      opacity: 0.0;
+    }
+  }
+  
+  /* Position each heart differently */
+  .heart1 {
+    left: 10%;
+    animation-duration: 12s;
+    animation-delay: 0s;
+  }
+  .heart2 {
+    left: 60%;
+    animation-duration: 9s;
+    animation-delay: 2s;
+  }
+  .heart3 {
+    left: 80%;
+    animation-duration: 15s;
+    animation-delay: 4s;
+  }
+  
+  /* HERO CONTENT (circle + text) */
+  .hero-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    z-index: 2; /* Above floating hearts */
+    max-width: 1200px;
+    margin: 2rem auto;
+    gap: 2rem;
+  }
+  
+  .hero-circle {
+    width: 300px;
+    height: 300px;
+    border: 4px solid #c68a34; /* gold-like accent */
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: #000;
+  }
+  
+  .hero-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .hero-text {
+    max-width: 500px;
+    text-align: left;
+  }
+  
+  .hero-text h1 {
+    font-size: 2rem;
+    color: #ff4d4d;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-text p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #f4f4f4;
+  }
+  
+  /* Heart 3D Container (within hero) */
+  .heart-3d-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    perspective: 800px;
+    margin: 1rem 0;
+  }
+  .heart-3d-container p {
+    margin-top: 0.5rem;
+    font-size: 1.1rem;
+    color: #ff4d4d;
+  }
+  
+  /* 3D Heart */
+  .heart-3d {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateZ(-45deg);
+    background-color: #ff4d4d;
+    border-radius: 15px;
+    animation: spin 4s linear infinite, pulse 1.5s ease-in-out infinite;
+    cursor: pointer;
+  }
+  
+  /* Shaping the top arcs with pseudo-elements */
+  .heart-3d::before,
+  .heart-3d::after {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-color: #ff4d4d;
+    border-radius: 50%;
+  }
+  .heart-3d::before {
+    top: -40px;
+    left: 0;
+  }
+  .heart-3d::after {
+    top: 0;
+    left: 40px;
+  }
+  
+  /* 3D spin (rotate Y) */
+  @keyframes spin {
+    0% {
+      transform: rotateX(0deg) rotateY(0deg) rotateZ(-45deg);
+    }
+    100% {
+      transform: rotateX(0deg) rotateY(360deg) rotateZ(-45deg);
+    }
+  }
+  
+  /* Pulsation */
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1) rotateZ(-45deg);
+    }
+    50% {
+      transform: scale(1.1) rotateZ(-45deg);
+    }
+  }
+  
+  /* INTRO SECTION */
+  .intro {
+    max-width: 800px;
+    margin: 3rem auto;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  
+  .intro h2 {
+    font-size: 1.8rem;
+    color: #ff4d4d;
+    margin-bottom: 1rem;
+  }
+  
+  .intro p {
+    font-size: 1rem;
+    color: #ddd;
+    line-height: 1.8;
+  }
+  
+  /* GALERIE */
+  .galerie {
+    max-width: 1000px;
+    margin: 2rem auto;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  
+  .galerie h2 {
+    font-size: 1.8rem;
+    color: #ff4d4d;
+    margin-bottom: 1rem;
+  }
+  
+  .photo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .photo-grid figure {
+    flex: 1 1 300px;
+    max-width: 320px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 5px;
+    overflow: hidden;
+    padding: 0.5rem;
+    text-align: center;
+  }
+  
+  .photo-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .photo-grid figcaption {
+    margin-top: 0.5rem;
+    font-style: italic;
+    color: #ccc;
+  }
+  
+  /* SCRISOARE */
+  .love-letter {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+    text-align: justify;
+  }
+  
+  .love-letter h2 {
+    font-size: 1.8rem;
+    color: #ff4d4d;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .love-letter p {
+    margin-bottom: 1rem;
+    color: #ddd;
+  }
+  
+  .love-letter .signature {
+    margin-top: 2rem;
+    text-align: right;
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  /* CONTACT SECTION */
+  .contact-section {
+    max-width: 700px;
+    margin: 3rem auto;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  .contact-section h2 {
+    font-size: 1.8rem;
+    color: #ff4d4d;
+    margin-bottom: 1rem;
+  }
+  .contact-section p {
+    color: #ddd;
+  }
+  
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #000;
+    color: #777;
+    font-size: 0.9rem;
+  }
+  
+  /* RESPONSIVE (max-width 768px or 600px) */
+  @media (max-width: 768px) {
+    .hero-content {
+      flex-direction: column;
+    }
+    .hero-text {
+      text-align: center;
+    }
+    .hero-circle {
+      margin-bottom: 1rem;
+    }
+    .photo-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
